@@ -22,7 +22,9 @@ jobs:
       
       # Install FlutterFire CLI
       - name: Install FlutterFire CLI
-        run: dart pub global activate flutterfire_cli
+        run: |
+          dart pub global activate flutterfire_cli
+          echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH  # Add Dart global bin to PATH
       
       # Authenticate with Firebase
       - name: Authenticate to Firebase
