@@ -13,12 +13,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       
-      # Set up Flutter
+      # Set up Flutter with a more recent version
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.7.0'
-
+          flutter-version: '3.29.0'  # Using a more recent stable version
+          channel: 'stable'
+      
+      # Disable analytics for CI environment
+      - name: Disable Flutter analytics
+        run: flutter config --no-analytics
+      
       # Install dependencies
       - name: Install dependencies
         run: flutter pub get
