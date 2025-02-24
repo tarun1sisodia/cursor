@@ -59,3 +59,5 @@ app.*.map.json
 # Ignore any other files that may contain sensitive information
 *.env
 *.secret
+/android/app/google-services.json
+/ios/Runner/GoogleService-Info.plist
