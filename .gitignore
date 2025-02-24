@@ -43,3 +43,18 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase configuration files
+google-services.json
+firebase.json
+firebase_android.iml
+apphosting.yaml
+
+# Any other sensitive files
+fir-rivanbytarun-firebase-adminsdk-fbsvc-99eaa90f87.json
+client_secret_658320308322-658320308322.apps.googleusercontent.com.json
+index.html
+
+# Ignore any other files that may contain sensitive information
+*.env
+*.secret
