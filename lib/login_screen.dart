@@ -142,6 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         _isLoading
                             ? null
                             : () {
+                              //this is an anonymous function that is defined without name , it is used to pass function within a function without name of function.
                               if (_formKey.currentState?.validate() ?? false) {
                                 _handleLogin();
                               }

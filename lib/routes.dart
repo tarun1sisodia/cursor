@@ -1,3 +1,5 @@
+import 'package:firebase/add_phone_number_screen.dart';
+import 'package:firebase/confirm_phone_number_screen.dart';
 import 'package:firebase/student_dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
@@ -35,6 +37,27 @@ class Routes {
         return MaterialPageRoute(builder: (_) => const RegisterScreen());
       case '/forgot-password':
         return MaterialPageRoute(builder: (_) => const ForgotPasswordScreen());
+      case '/add-phone-number':
+        final args = settings.arguments as RegistrationArguments;
+        return MaterialPageRoute(
+          builder:
+              (_) => AddPhoneNumberScreen(
+                email: args.email,
+                password: args.password,
+                username: args.username,
+              ),
+        );
+      case '/confirm-phone-number':
+        final args = settings.arguments as VerificationArguments;
+        return MaterialPageRoute(
+          builder:
+              (_) => ConfirmPhoneNumberScreen(
+                verificationId: args.verificationId,
+                email: args.email,
+                password: args.password,
+                username: args.username,
+              ),
+        );
       case '/onboarding':
         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
       case '/profile':
@@ -56,7 +79,11 @@ class Routes {
     }
   }
 
-  static void navigateToAndRemove(BuildContext context, String routeName) {
+  static void navigateToAndRemove(
+    BuildContext context,
+    String routeName, {
+    Object? arguments,
+  }) {
     Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
         builder: (context) {
@@ -65,6 +92,26 @@ class Routes {
               return const LoginScreen();
             case '/register':
               return const RegisterScreen();
+            case '/add-phone-number':
+              final email = arguments as String;
+              final password = arguments;
+              final username = arguments;
+              return AddPhoneNumberScreen(
+                email: email,
+                password: password,
+                username: username,
+              );
+            case '/confirm-phone-number':
+              final verificationId = arguments as String;
+              final email = arguments;
+              final password = arguments;
+              final username = arguments;
+              return ConfirmPhoneNumberScreen(
+                verificationId: verificationId,
+                email: email,
+                password: password,
+                username: username,
+              );
             case '/forgot-password':
               return const ForgotPasswordScreen();
             case '/onboarding':
@@ -90,4 +137,30 @@ class Routes {
       (route) => false,
     );
   }
+}
+
+class RegistrationArguments {
+  final String email;
+  final String password;
+  final String username;
+
+  RegistrationArguments({
+    required this.email,
+    required this.password,
+    required this.username,
+  });
+}
+
+class VerificationArguments {
+  final String verificationId;
+  final String email;
+  final String password;
+  final String username;
+
+  VerificationArguments({
+    required this.verificationId,
+    required this.email,
+    required this.password,
+    required this.username,
+  });
 }

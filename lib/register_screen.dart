@@ -2,8 +2,6 @@ import 'package:firebase/app_pallete.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase/routes.dart';
 import 'package:firebase/utils/validators.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase/app_config.dart';
 import 'package:firebase/custom_text_form_field.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -27,7 +25,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String _passwordStrength = '';
   Color _passwordStrengthColor = Colors.grey;
   bool _termsAccepted = false;
-  bool _isLoading = false;
+  final bool _isLoading = false;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -141,73 +139,83 @@ class _RegisterScreenState extends State<RegisterScreen> {
         return;
       }
 
-      setState(() {
-        _isLoading = true;
-      });
-
-      try {
-        // Generate and store UUIDs
-        final userUUID = AppConfig.generateUUID();
-        final deviceUUID = await AppConfig.getDeviceUUID();
-
-        UserCredential userCredential = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-              email: _emailController.text.trim(),
-              password: _passwordController.text,
-            );
-
-        // Store the user UUID
-        await AppConfig.storeUserUUID(userUUID);
-
-        // Add username and additional data to Firebase user profile
-        await userCredential.user?.updateDisplayName(
-          _usernameController.text.trim(),
-        );
-
-        // Print identification information
-        print('User Information:');
-        print('Firebase UID: ${userCredential.user?.uid}');
-        print('Generated User UUID: $userUUID');
-        print('Device UUID: $deviceUUID');
-        print('Username: ${_usernameController.text.trim()}');
-        print('Email: ${_emailController.text.trim()}');
-
-        // Show success message and navigate to login
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Registration successful! Please login.'),
-              backgroundColor: Colors.green,
-            ),
-          );
-          Navigator.pushReplacementNamed(context, Routes.login);
-        }
-      } on FirebaseAuthException catch (e) {
-        String errorMessage = 'Registration failed';
-        if (e.code == 'weak-password') {
-          errorMessage = 'The password provided is too weak';
-        } else if (e.code == 'email-already-in-use') {
-          errorMessage = 'An account already exists for this email';
-        } else if (e.code == 'invalid-email') {
-          errorMessage = 'Please enter a valid email address';
-        }
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(errorMessage), backgroundColor: Colors.red),
-        );
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text('Error: ${e.toString()}'),
-            backgroundColor: Colors.red,
-          ),
-        );
-      } finally {
-        setState(() {
-          _isLoading = false;
-        });
-      }
+      // Navigate to AddPhoneNumberScreen with user data
+      Navigator.pushNamed(
+        context,
+        '/add-phone-number',
+        arguments: RegistrationArguments(
+          email: _emailController.text.trim(),
+          password: _passwordController.text,
+          username: _usernameController.text.trim(),
+        ),
+      );
     }
   }
+      // setState(() {
+      //   _isLoading = true;
+      // });
+
+      // try {
+      //   // Generate and store UUIDs
+      //   final userUUID = AppConfig.generateUUID();
+      //   final deviceUUID = await AppConfig.getDeviceUUID();
+
+      //   UserCredential userCredential = await FirebaseAuth.instance
+      //       .createUserWithEmailAndPassword(
+      //         email: _emailController.text.trim(),
+      //         password: _passwordController.text,
+      //       );
+
+      //   // Store the user UUID
+      //   await AppConfig.storeUserUUID(userUUID);
+
+      //   // Add username and additional data to Firebase user profile
+      //   await userCredential.user?.updateDisplayName(
+      //     _usernameController.text.trim(),
+      //   );
+
+      //   // Print identification information
+      //   print('User Information:');
+      //   print('Firebase UID: ${userCredential.user?.uid}');
+      //   print('Generated User UUID: $userUUID');
+      //   print('Device UUID: $deviceUUID');
+      //   print('Username: ${_usernameController.text.trim()}');
+      //   print('Email: ${_emailController.text.trim()}');
+
+      //   // Show success message and navigate to login
+      //   if (mounted) {
+      //     ScaffoldMessenger.of(context).showSnackBar(
+      //       const SnackBar(
+      //         content: Text('Registration successful! Please login.'),
+      //         backgroundColor: Colors.green,
+      //       ),
+      //     );
+      //     Navigator.pushReplacementNamed(context, Routes.login);
+      //   }
+      // } on FirebaseAuthException catch (e) {
+      //   String errorMessage = 'Registration failed';
+      //   if (e.code == 'weak-password') {
+      //     errorMessage = 'The password provided is too weak';
+      //   } else if (e.code == 'email-already-in-use') {
+      //     errorMessage = 'An account already exists for this email';
+      //   } else if (e.code == 'invalid-email') {
+      //     errorMessage = 'Please enter a valid email address';
+      //   }
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     SnackBar(content: Text(errorMessage), backgroundColor: Colors.red),
+      //   );
+      // } catch (e) {
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     SnackBar(
+      //       content: Text('Error: ${e.toString()}'),
+      //       backgroundColor: Colors.red,
+      //     ),
+      //   );
+      // } finally {
+      //   setState(() {
+      //     _isLoading = false;
+      //   });
+      // }
 
   @override
   Widget build(BuildContext context) {
@@ -342,14 +350,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: _isLoading
-                        ? const CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                          )
-                        : const Text(
-                            'Sign Up',
-                            style: TextStyle(color: Colors.white),
-                          ),
+                    child:
+                        _isLoading
+                            ? const CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                Colors.white,
+                              ),
+                            )
+                            : const Text(
+                              'Sign Up',
+                              style: TextStyle(color: Colors.white),
+                            ),
                   ),
                 ),
                 const SizedBox(height: 20),

@@ -7,6 +7,7 @@ class CustomTextFormField extends StatefulWidget {
   final bool obscureText;
   final TextInputType keyboardType;
   final bool enabled;
+  // final String hintText;
   /// This is used to toggle the visibility of the password
   final VoidCallback? onToggleVisibility;
   const CustomTextFormField({

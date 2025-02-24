@@ -53,6 +53,8 @@ class Routes {
   static const String settings = '/settings';
   static const String markAttendance = '/mark-attendance';
   static const String login = '/login';
+
+  static const String studentDashboard = '/student-dashboard';
 }
 
 class AppTheme {
