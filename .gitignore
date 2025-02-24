@@ -50,6 +50,7 @@ app.*.map.json
 /firebase_android.iml
 /apphosting.yaml
 /lib/firebase_options.dart
+/lib/firebase_option.dart
 
 # Any other sensitive files
 /fir-rivanbytarun-firebase-adminsdk-fbsvc-99eaa90f87.json
