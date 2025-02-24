@@ -66,6 +66,47 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  void _handleLogin() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    try {
+      // Attempt to sign in with email and password
+      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text,
+      );
+
+      // Navigate to the main app screen
+      Navigator.pushReplacementNamed(context, Routes.studentDashboard);
+    } on FirebaseAuthException catch (e) {
+      // Handle specific error codes
+      if (e.code == 'invalid-credential') {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text('You are not registered yet.')));
+      } else if (e.message ==
+          'The supplied auth credential is incorrect, malformed or has expired.') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Your Email or Password is incorrect.')),
+        );
+      } else {
+        // Handle other errors
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Error: ${e.message}'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,7 +183,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         _isLoading
                             ? null
                             : () {
-                              //this is an anonymous function that is defined without name , it is used to pass function within a function without name of function.
                               if (_formKey.currentState?.validate() ?? false) {
                                 _handleLogin();
                               }
@@ -238,35 +278,5 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-  }
-
-  void _handleLogin() async {
-    setState(() {
-      _isLoading = true;
-    });
-
-    try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text,
-      );
-
-      // Navigate to the main app screen
-      Navigator.pushReplacementNamed(context, Routes.studentDashboard);
-    } on FirebaseAuthException catch (e) {
-      String errorMessage = 'Login failed';
-      if (e.code == 'user-not-found') {
-        errorMessage = 'No user found for that email.';
-      } else if (e.code == 'wrong-password') {
-        errorMessage = 'Wrong password provided for that user.';
-      }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(errorMessage), backgroundColor: Colors.red),
-      );
-    } finally {
-      setState(() {
-        _isLoading = false;
-      });
-    }
   }
 }

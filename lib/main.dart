@@ -1,5 +1,6 @@
 import 'package:firebase/firebase_options.dart';
 import 'package:firebase/login_screen.dart';
+import 'package:firebase/onboarding_screen.dart';
 import 'package:firebase/student_dashboard_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
           } else if (snapshot.hasData && snapshot.data == true) {
             return const StudentDashboardScreen(); // Direct to dashboard if logged in
           } else {
-            return const LoginScreen(); // Show onboarding if not logged in
+            return const OnboardingScreen(); // Show onboarding if not logged in
           }
         },
       ),
