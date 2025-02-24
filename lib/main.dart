@@ -1,5 +1,4 @@
 import 'package:firebase/firebase_options.dart';
-import 'package:firebase/login_screen.dart';
 import 'package:firebase/onboarding_screen.dart';
 import 'package:firebase/student_dashboard_screen.dart';
 import 'package:firebase_core/firebase_core.dart';

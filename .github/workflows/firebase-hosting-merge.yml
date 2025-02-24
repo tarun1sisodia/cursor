@@ -13,12 +13,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       
-      # Set up Flutter
+      # Set up Flutter with updated version
       - name: Set up Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.16.5'
+          flutter-version: '3.29.0'
           channel: 'stable'
+      
+      # Update Flutter
+      - name: Update Flutter
+        run: |
+          flutter upgrade
+          flutter --version
       
       # Authenticate with Firebase
       - name: Authenticate to Firebase
@@ -46,7 +52,9 @@ jobs:
       
       # Install dependencies
       - name: Install dependencies
-        run: flutter pub get
+        run: |
+          flutter pub get
+          flutter pub upgrade
       
       # Configure FlutterFire
       - name: Configure FlutterFire
