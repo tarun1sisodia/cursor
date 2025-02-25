@@ -22,10 +22,6 @@ jobs:
         run: |
           curl -sL https://firebase.tools | bash
       
-      - name: Authenticate to Firebase
-        run: |
-          firebase login:ci --token "${{ secrets.FIREBASE_TOKEN }}"
-      
       - name: Ensure flutterfire_cli is installed
         run: |
           flutter pub global activate flutterfire_cli 1.1.0
