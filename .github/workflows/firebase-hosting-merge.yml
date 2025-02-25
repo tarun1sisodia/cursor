@@ -26,6 +26,11 @@ jobs:
           dart pub global activate flutterfire_cli
           echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH  # Add Dart global bin to PATH
       
+      # Check FlutterFire CLI Installation
+      - name: Check FlutterFire CLI Installation
+        run: |
+          flutter pub global run flutterfire_cli --help
+      
       # Authenticate with Firebase
       - name: Authenticate to Firebase
         uses: 'google-github-actions/auth@v2'
