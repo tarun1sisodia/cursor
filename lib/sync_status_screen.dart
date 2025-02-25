@@ -7,7 +7,7 @@ class SyncStatusScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Sync Status')),
-      body: Center(child: Text('Sync Status Screen')),
+      body: const Center(child: Text('Sync Status Screen')),
     );
   }
 }

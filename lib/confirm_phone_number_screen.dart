@@ -81,7 +81,7 @@ class _ConfirmPhoneNumberScreenState extends State<ConfirmPhoneNumberScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Confirm Phone Number')),
+      appBar: AppBar(title: const Text('Confirm Phone Number')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -97,11 +97,11 @@ class _ConfirmPhoneNumberScreenState extends State<ConfirmPhoneNumberScreen> {
                 return null;
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _isLoading ? null : _confirmCode,
               child:
-                  _isLoading ? CircularProgressIndicator() : Text('Continue'),
+                  _isLoading ? const CircularProgressIndicator() : const Text('Continue'),
             ),
           ],
         ),

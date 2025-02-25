@@ -21,14 +21,14 @@ class AppTheme {
     scaffoldBackgroundColor: Apppallete.backgroundColor,
     brightness: Brightness.dark,
     primaryColor: Apppallete.primaryColor,
-    colorScheme: ColorScheme.dark(
+    colorScheme: const ColorScheme.dark(
       primary: Apppallete.primaryColorDark,
       secondary: Apppallete.primaryColor,
       onError: Apppallete.error,
       onSurface: Apppallete.primaryDarkColor,
       onSecondary: Apppallete.secondaryColor,
     ),
-    buttonTheme: ButtonThemeData(
+    buttonTheme: const ButtonThemeData(
       buttonColor:Apppallete.darkThemeButtonDarkColor, // Default button color
       // textTheme: ButtonTextTheme.primary,
       splashColor: Apppallete.primaryColoryellowish,
@@ -39,7 +39,7 @@ class AppTheme {
       headlineMedium: headlineMedium.copyWith(color: Apppallete.textPrimary),
       bodyLarge: bodyLarge.copyWith(color: Apppallete.textPrimary),
       bodyMedium: bodyMedium.copyWith(color: Apppallete.textSecondary),
-      bodySmall: TextStyle(fontSize: 12, color: Apppallete.textHint),
+      bodySmall: const TextStyle(fontSize: 12, color: Apppallete.textHint),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -54,7 +54,7 @@ class AppTheme {
         brightness: Brightness.light,
         primaryColor: Colors.blue,
         scaffoldBackgroundColor: Colors.white,
-        colorScheme: ColorScheme.light(
+        colorScheme: const ColorScheme.light(
           primary: Colors.blue,
           secondary: Colors.blueAccent,
         ),

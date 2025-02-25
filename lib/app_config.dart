@@ -8,7 +8,7 @@ class AppConfig {
 
   // Method to generate a UUID
   static String generateUUID() {
-    var uuid = Uuid();
+    var uuid = const Uuid();
     return uuid.v4();
   }
 

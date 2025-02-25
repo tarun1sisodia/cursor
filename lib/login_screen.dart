@@ -85,11 +85,11 @@ class _LoginScreenState extends State<LoginScreen> {
       if (e.code == 'invalid-credential') {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(SnackBar(content: Text('You are not registered yet.')));
+        ).showSnackBar(const SnackBar(content: Text('You are not registered yet.')));
       } else if (e.message ==
           'The supplied auth credential is incorrect, malformed or has expired.') {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Your Email or Password is incorrect.')),
+          const SnackBar(content: Text('Your Email or Password is incorrect.')),
         );
       } else {
         // Handle other errors
@@ -171,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: double.infinity,
                   height: 50,
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                       colors: [Colors.blue, Colors.purple, Colors.yellowAccent],
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,

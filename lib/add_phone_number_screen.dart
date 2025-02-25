@@ -66,7 +66,7 @@ class _AddPhoneNumberScreenState extends State<AddPhoneNumberScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Add Phone Number')),
+      appBar: AppBar(title: const Text('Add Phone Number')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -82,10 +82,10 @@ class _AddPhoneNumberScreenState extends State<AddPhoneNumberScreen> {
                 return null;
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _sendCode,
-              child: Text('Send me the code'),
+              child: const Text('Send me the code'),
             ),
           ],
         ),

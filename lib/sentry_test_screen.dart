@@ -7,7 +7,7 @@ class SentryTestScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Sentry Test')),
-      body: Center(child: Text('Sentry Test Screen')),
+      body: const Center(child: Text('Sentry Test Screen')),
     );
   }
 }
