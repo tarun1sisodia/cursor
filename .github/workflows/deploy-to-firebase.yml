@@ -24,7 +24,7 @@ jobs:
       
       - name: Authenticate to Firebase
         run: |
-          echo "${{ secrets.FIREBASE_TOKEN }}" | firebase login:ci --token
+          firebase login:ci --token "${{ secrets.FIREBASE_TOKEN }}"
       
       - name: Ensure flutterfire_cli is installed
         run: |
