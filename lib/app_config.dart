@@ -32,7 +32,6 @@ class AppConfig {
     if (deviceId == null) {
       deviceId = generateUUID();
       await prefs.setString(_deviceUUIDKey, deviceId);
-      print('Generated new Device UUID: $deviceId');
     }
     return deviceId;
   }
