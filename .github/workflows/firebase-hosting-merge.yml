@@ -20,11 +20,10 @@ jobs:
           flutter-version: '3.29.0'
           channel: 'stable'
       
-      # Install FlutterFire CLI
-      - name: Install FlutterFire CLI
+      # Ensure flutterfire_cli is installed
+      - name: Ensure flutterfire_cli is installed
         run: |
-          dart pub global activate flutterfire_cli
-          echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH  # Add Dart global bin to PATH
+          flutter pub global activate flutterfire_cli
       
       # Check FlutterFire CLI Installation
       - name: Check FlutterFire CLI Installation
