@@ -57,8 +57,8 @@ class _LoginScreenState extends State<LoginScreen> {
         Navigator.pushReplacementNamed(context, Routes.studentDashboard);
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+      ScaffoldMessenger.of(context).showMaterialBanner(
+        MaterialBanner(actions: const [Text('I am Tarun Login Snack bar 61'),],
           content: Text('Google Sign-In failed: ${e.toString()}'),
           backgroundColor: Colors.red,
         ),
