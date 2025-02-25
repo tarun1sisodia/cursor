@@ -23,7 +23,13 @@ jobs:
       # Ensure flutterfire_cli is installed
       - name: Ensure flutterfire_cli is installed
         run: |
-          flutter pub global activate flutterfire_cli
+          flutter pub global activate flutterfire_cli 1.1.0
+      
+      # Verify flutterfire_cli Installation
+      - name: Verify flutterfire_cli Installation
+        run: |
+          echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
+          flutter pub global run flutterfire_cli --version
       
       # Check FlutterFire CLI Installation
       - name: Check FlutterFire CLI Installation
