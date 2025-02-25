@@ -48,7 +48,7 @@ app.*.map.json
 /google-services.json
 /firebase.json
 /firebase_android.iml
-/apphosting.yaml
+# /apphosting.yaml
 /lib/firebase_options.dart
 /lib/firebase_option.dart
 
