@@ -55,7 +55,8 @@ app.*.map.json
 # Any other sensitive files
 /fir-rivanbytarun-firebase-adminsdk-fbsvc-99eaa90f87.json
 /client_secret_658320308322-658320308322.apps.googleusercontent.com.json
-
+/.github/workflows/firebase-hosting-merge.yml
+/.github/workflows/firebase-hosting-pull-request.yml
 
 # Ignore any other files that may contain sensitive information
 *.env
